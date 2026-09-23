@@ -1,8 +1,11 @@
-const path = require("node:path");
-const { leerArchivoJSON } = require("./archivos.js");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
+const morgan = require("morgan");
+const path = require("node:path");
 
+
+//Crear una instancia de la aplicación express
+const app = express();
 
 //Defino una constante para el puerto de escucha 3000
 const PORT = 3000;
@@ -46,14 +49,19 @@ const reservas = [
     }
 ];
 
+//Para ver todas la solicitudes del servidor
+let numeroDeSolicitud = 0;
+
+function identificarSolicitud(req, res, next) {
+    numeroDeSolicitud += 1;
+    res.locals.solicitudId = `SOL-${String(numeroDeSolicitud).padStart(4, "0")}`;
+    console.log(`identificarSolicitud : [${res.locals.solicitudId}] ${req.method} ${req.originalUrl}`);
+    next();
+}
+
 //Funcion principal de inicio
 async function main() {
-
-    //Leo y transformo el archivo JSON    
-    const mascotas = await leerArchivoJSON( rutaDatoJSON );
-
-    //Crear una instancia de la aplicación express
-    const app = express();
+   
 
     //Le comunicamos a express que use el motor ejs para procesar las plantillas
     app.set("view engine", "ejs");
