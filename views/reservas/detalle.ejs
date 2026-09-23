@@ -1,0 +1,22 @@
+<article class="tarjeta-principal">
+    
+    <div class="contenedor-foto">
+        <img src="<%= mascota.imagen %>" alt="imagen ilustrada de un perro y gato" width="400" height="400">
+    </div>
+
+    <div>
+         <p class="etiqueta"><%= mascota.nombre %></p>
+    
+        <h2 class="especie-titulo">Especie: <%= mascota.especie %></h2>
+                
+        <p class="edad-texto">Edad: <%= mascota.edad%> Año</p>
+
+        <p><span class="edad-texto">Descripción:</span> <%= mascota.descripcion %></p>
+
+        <p class="edad-texto">Estado: <%= mascota.estado %></p>
+    </div>
+    <hr>
+    <div class="espacio-interlineado objeto-centrado">
+        <a class="boton" href="/mascotas">Volver al catálogo</a>
+    </div>
+</article>
