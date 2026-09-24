@@ -5,30 +5,30 @@
   
     <div class="fila-catalogo">
         <h1><%= titulo %></h1>
-        <a href="/mascotas/nueva" class="boton texto-centrado" >Agregar mascota</a>
+        <a href="/reservas/nueva" class="boton texto-centrado" >Agregar reservas</a>
     </div>
 </div>
 
-<% if (mascotas.length === 0) { %>
+<% if (reservas.length === 0) { %>
     <div  class="tarjeta-principal">
-        <p class="texto-centrado edad-texto">No hay mascotas para mostrar.</p>
+        <p class="texto-centrado edad-texto">No hay reservas para mostrar.</p>
     </div>
 <% } else { %>
 
-    <div class="grid-mascotas">
-    <% mascotas.forEach(mascota => { %>
-        <article class="tarjeta-mascota">
+    <div class="grid-detalle">
+    <% reservas.forEach(reserva => { %>
+        <article class="tarjeta-detalle">
         <div class="contenedor-foto">
-            <img src="<%= mascota.imagen %>" alt="<%= mascota.nombre %>">
+            <img src="/img/reservas.svg" alt="<%= reserva.estudiante%>">
         </div>
         <div class="info-tarjeta">
-            <span class="etiqueta"><%= mascota.nombre %></span>
-            <h3 class="especie-titulo">Especie: <%= mascota.especie %></h3>
-            <p class="edad-texto">Edad: <%= mascota.edad %> Año</p>
-            <p class="edad-texto">Estado: <%= mascota.estado %></p>
+            <span class="etiqueta"><%= reserva.estudiante %></span>
+            <h3 class="titulo-segundo">Email: <%= reserva.email %></h3>
+            <p class="titulo-tercero">Sala: <%= reserva.sala %> Año</p>
+            <p class="titulo-tercero">Estado: <%= reserva.fecha %></p>
         </div>
         <div style="margin-top: 20px">
-            <a  href="/mascotas/<%= mascota.id %>">Ver detalle</a>
+            <a  href="/reservas/<%= reserva.id %>">Ver detalle</a>
         </div>
         </article>
     <% }); %>

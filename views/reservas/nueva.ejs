@@ -5,34 +5,36 @@
     <% if (error) { %>
         <p class="error-msg" role="alert"><%= error %></p>
     <% } %>
-    <form action="/mascotas" method="post" class="formulario">
-        <label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" value="<%= valores.nombre ?? '' %>" required>
+    <form action="/reservas" method="post" class="formulario">
+        <label for="estudiante">Estudiante</label>
+        <input id="estudiante" name="estudiante" value="<%= valores.estudiante ?? '' %>">
         
-        <label for="especie">Categoría</label>
-        <input id="especie" name="especie" value="<%= valores.especie ?? '' %>" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" value="<%= valores.email ?? '' %>">
 
-        <label for="edad">Edad</label>
-        <input id="edad" name="edad" type="number" min="0" step="1" value="<%= valores.edad ?? '' %>" 
-               class="<%= error && (!valores.edad || Number(valores.edad) <= 0) ? 'campo-error' : '' %>">
-
-        <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" name="descripcion" rows="5" required><%= valores.descripcion ?? '' %></textarea>
-        
-        <label for="estado">Estado</label>
-        <select id="estado" name="estado" required>
-            <option value="">Seleccionar estado</option>
-            <option value="En adopción" <%= valores.estado === 'En adopción' ? 'selected' : '' %>>En adopción</option>
-            <option value="Reservada" <%= valores.estado === 'Reservada' ? 'selected' : '' %>>Reservada</option>
-            <option value="Adoptada" <%= valores.estado === 'Adoptada' ? 'selected' : '' %>>Adoptada</option>
+        <label for="sala">Sala</label>
+        <select id="sala" name="sala">
+            <option value="">Seleccionar sala</option>
+            <option value="Sala Norte" <%= valores.sala === 'Sala Norte' ? 'selected' : '' %>>Sala Norte</option>
+            <option value="Sala Sur" <%= valores.sala === 'Sala Sur' ? 'selected' : '' %>>Sala Sur</option>
+            <option value="Sala Multimedia" <%= valores.sala === 'Adoptada' ? 'selected' : '' %>>Sala Multimedia</option>
         </select>
 
-        <label for="imagen">Ruta de imagen</label>
-        <input id="imagen" name="imagen" value="<%= valores.imagen ?? '/img/mascota.svg' %>" 
-                class="<%= error && String(valores.imagen ?? '').trim() !== '/img/mascota.svg' ? 'campo-error' : '' %>"
-    required>
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" name="fecha" value="<%= valores.fecha ?? '' %>">
+      
+        <label for="turno">Turno</label>
+        <select id="turno" name="turno">
+            <option value="">Seleccione un turno</option>
+            <option value="Mañana" <%= valores.turno === 'Mañana' ? 'selected' : '' %>>Mañana</option>
+            <option value="Tarde" <%= valores.turno === 'Tarde' ? 'selected' : '' %>>Tarde</option>
+            <option value="Noche" <%= valores.turno === 'Noche' ? 'selected' : '' %>>Noche</option>
+        </select>
+
+        <label for="personas">Cantidad de personas</label>
+        <input id="personas" name="personas" type="number" min="0" step="1" value="<%= valores.personas ?? '' %>" >
         <hr>
-        <button type="submit">Guardar mascota</button>
+        <button type="submit">Guardar reserva</button>
     </form>
 </section>
 

@@ -166,7 +166,7 @@ button:hover  {
 
 
 /* Contenedor Grid Responsivo */
-.grid-mascotas {
+.grid-detalle {
     display: grid;
     /* Crea columnas automáticas de mínimo 240px y máximo 1fr */
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -178,7 +178,7 @@ button:hover  {
 }
 
 /* Tarjeta individual */
-.tarjeta-mascota {
+.tarjeta-detalle {
     background-color: #ffffff;
     border-radius: 16px;
     padding: 1.25rem;
@@ -204,19 +204,19 @@ button:hover  {
 }
 
 .contenedor-foto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Evita que las imágenes se deformen */
+   width: 100%;
+   height: 100%;
+   object-fit: cover; /* Evita que las imágenes se deformen */
 }
 
-.especie-titulo {
+.titulo-segundo{
   margin: 0 0 0.5rem 0;
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: #111827;
   font-weight: 700;
 }
 
-.edad-texto {
+.titulo-tercero {
   margin: 0;
   color: #374151;
   font-weight: 600;

@@ -76,7 +76,7 @@ function medirDuracion(req, res, next) {
 }
 
 //MIDDLEWARE: Indica en que seccion se esta procesando la solicitud
-function prepararAreaReservasSalasEstudios( req, res, next) {
+function prepararAreaReservasSalasEstudio( req, res, next) {
 
     res.locals.seccion = "Reservas de salas de estudio";
     console.log( 'Sección: ' + res.locals.seccion );
@@ -84,7 +84,7 @@ function prepararAreaReservasSalasEstudios( req, res, next) {
 }
 
 //MIDDLEWARE: Comprueba que los datos de la reservas sean correctos antes de continuar
-function validarReservasSalasEstudios( req, res, next ) {
+function validarReservasSalasEstudio( req, res, next ) {
     
     const estudiante = String(req.body.estudiante ?? "").trim();
     const email = String(req.body.email ?? "").trim();
@@ -118,7 +118,7 @@ function validarReservasSalasEstudios( req, res, next ) {
 }
 
 //Función para crear una reserva nueva
-function crearReservasSalasEstudios(req, res) {
+function crearReservasSalasEstudio(req, res) {
 
     const ultimoId = reservas.reduce(
     
@@ -159,7 +159,7 @@ async function main() {
 
     //Definimos el enrutador
     const reservasRouter = express.Router();
-    reservasRouter.use(prepararAreaReservasSalasEstudios);
+    reservasRouter.use(prepararAreaReservasSalasEstudio);
 
     reservasRouter.get("/", (req, res) => {
 
@@ -172,7 +172,7 @@ async function main() {
     reservasRouter.get("/nueva", (req, res) => {
 
         res.render("reservas/nueva", {
-            titulo: "Nuevo producto",
+            titulo: "Nueva Reserva",
             error: null,
             valores: {},
         });
@@ -195,7 +195,7 @@ async function main() {
         });
     });
 
-    reservasRouter.post("/", validarReservasSalasEstudios, crearReservasSalasEstudios);
+    reservasRouter.post("/", validarReservasSalasEstudio, crearReservasSalasEstudio);
     app.use("/reservas", reservasRouter);
 
     app.use((req, res) => {

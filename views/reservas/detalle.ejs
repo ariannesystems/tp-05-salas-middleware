@@ -1,22 +1,24 @@
 <article class="tarjeta-principal">
     
     <div class="contenedor-foto">
-        <img src="<%= mascota.imagen %>" alt="imagen ilustrada de un perro y gato" width="400" height="400">
+        <img src="/img/reservas.svg" alt="reserva.estudiante">
     </div>
 
     <div>
-         <p class="etiqueta"><%= mascota.nombre %></p>
+         <p class="etiqueta"><%= reserva.estudiante %></p>
     
-        <h2 class="especie-titulo">Especie: <%= mascota.especie %></h2>
+        <h2 class="titulo-segundo">Email: <%= reserva.email %></h2>
                 
-        <p class="edad-texto">Edad: <%= mascota.edad%> Año</p>
+        <p class="titulo-tercero">Sala: <%= reserva.sala%> Año</p>
 
-        <p><span class="edad-texto">Descripción:</span> <%= mascota.descripcion %></p>
+        <p><span class="titulo-tercero">Fecha:</span> <%= reserva.fecha %></p>
 
-        <p class="edad-texto">Estado: <%= mascota.estado %></p>
+        <p class="titulo-tercero">Turno: <%= reserva.turno%></p>
+
+        <p class="titulo-tercero">Número de personas: <%= reserva.personas%></p>
     </div>
     <hr>
     <div class="espacio-interlineado objeto-centrado">
-        <a class="boton" href="/mascotas">Volver al catálogo</a>
+        <a class="boton" href="/reservas">Volver a la lista de reservas</a>
     </div>
 </article>
