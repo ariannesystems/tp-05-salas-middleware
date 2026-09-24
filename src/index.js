@@ -13,7 +13,7 @@ const reservas = [
         estudiante: "Juan Pérez",
         email: "juan@gmail.com",
         sala: "Sala Norte",
-        fecha: "2026-09-25",
+        fecha: "05/09/2026",
         turno: "Mañana",
         personas: 2
     },
@@ -22,7 +22,7 @@ const reservas = [
         estudiante: "María López",
         email: "maria@gmail.com",
         sala: "Sala Sur",
-        fecha: "2026-09-26",
+        fecha: "26/09/2026",
         turno: "Tarde",
         personas: 4
     },
@@ -31,7 +31,7 @@ const reservas = [
         estudiante: "Carlos Gómez",
         email: "carlos@gmail.com",
         sala: "Sala Multimedia",
-        fecha: "2026-09-27",
+        fecha: "27/09/2026",
         turno: "Noche",
         personas: 3
     },
@@ -40,7 +40,7 @@ const reservas = [
         estudiante: "Ana Rodríguez",
         email: "ana@gmail.com",
         sala: "Sala Norte",
-        fecha: "2026-09-28",
+        fecha: "28/09/2026",
         turno: "Mañana",
         personas: 1
     }

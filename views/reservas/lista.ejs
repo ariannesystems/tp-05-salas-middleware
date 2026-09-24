@@ -25,7 +25,7 @@
             <span class="etiqueta"><%= reserva.estudiante %></span>
             <h3 class="titulo-segundo">Email: <%= reserva.email %></h3>
             <p class="titulo-tercero">Sala: <%= reserva.sala %> Año</p>
-            <p class="titulo-tercero">Estado: <%= reserva.fecha %></p>
+            <p class="titulo-tercero">Estado: <%= reserva.fecha.split("-").reverse().join("/") %></p>
         </div>
         <div style="margin-top: 20px">
             <a  href="/reservas/<%= reserva.id %>">Ver detalle</a>

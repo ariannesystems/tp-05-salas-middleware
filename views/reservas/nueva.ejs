@@ -10,10 +10,10 @@
         <input id="estudiante" name="estudiante" value="<%= valores.estudiante ?? '' %>">
         
         <label for="email">Email</label>
-        <input id="email" name="email" value="<%= valores.email ?? '' %>">
+        <input id="email" name="email" value="<%= valores.email ?? '' %>" required>
 
         <label for="sala">Sala</label>
-        <select id="sala" name="sala">
+        <select id="sala" name="sala" required>
             <option value="">Seleccionar sala</option>
             <option value="Sala Norte" <%= valores.sala === 'Sala Norte' ? 'selected' : '' %>>Sala Norte</option>
             <option value="Sala Sur" <%= valores.sala === 'Sala Sur' ? 'selected' : '' %>>Sala Sur</option>
@@ -21,10 +21,10 @@
         </select>
 
         <label for="fecha">Fecha</label>
-        <input type="date" id="fecha" name="fecha" value="<%= valores.fecha ?? '' %>">
+        <input type="date" id="fecha" name="fecha" value="<%= valores.fecha ?? '' %>" required>
       
         <label for="turno">Turno</label>
-        <select id="turno" name="turno">
+        <select id="turno" name="turno" required>
             <option value="">Seleccione un turno</option>
             <option value="Mañana" <%= valores.turno === 'Mañana' ? 'selected' : '' %>>Mañana</option>
             <option value="Tarde" <%= valores.turno === 'Tarde' ? 'selected' : '' %>>Tarde</option>
@@ -32,7 +32,7 @@
         </select>
 
         <label for="personas">Cantidad de personas</label>
-        <input id="personas" name="personas" type="number" min="0" step="1" value="<%= valores.personas ?? '' %>" >
+        <input id="personas" name="personas" type="number" min="1" max="6" step="1" value="<%= valores.personas ?? '' %>" required>
         <hr>
         <button type="submit">Guardar reserva</button>
     </form>
@@ -41,7 +41,7 @@
 <script>
     const formulario = document.querySelector(".formulario");
 
-    const campos = formulario.querySelectorAll("input, select, textarea");
+    const campos = formulario.querySelectorAll("input, select");
 
     campos.forEach(campo => {
 

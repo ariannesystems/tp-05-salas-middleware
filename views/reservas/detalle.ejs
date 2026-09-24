@@ -11,7 +11,7 @@
                 
         <p class="titulo-tercero">Sala: <%= reserva.sala%> Año</p>
 
-        <p><span class="titulo-tercero">Fecha:</span> <%= reserva.fecha %></p>
+        <p><span class="titulo-tercero">Fecha:</span> <%= reserva.fecha.split("-").reverse().join("/") %></p>
 
         <p class="titulo-tercero">Turno: <%= reserva.turno%></p>
 
