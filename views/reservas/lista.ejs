@@ -1,0 +1,38 @@
+<div>
+    <div class="tarjeta-catalogo">
+        <span class="etiqueta">CATÁLOGO</span>
+        <hr class="linea-separadora">
+  
+    <div class="fila-catalogo">
+        <h1><%= titulo %></h1>
+        <a href="/mascotas/nueva" class="boton texto-centrado" >Agregar mascota</a>
+    </div>
+</div>
+
+<% if (mascotas.length === 0) { %>
+    <div  class="tarjeta-principal">
+        <p class="texto-centrado edad-texto">No hay mascotas para mostrar.</p>
+    </div>
+<% } else { %>
+
+    <div class="grid-mascotas">
+    <% mascotas.forEach(mascota => { %>
+        <article class="tarjeta-mascota">
+        <div class="contenedor-foto">
+            <img src="<%= mascota.imagen %>" alt="<%= mascota.nombre %>">
+        </div>
+        <div class="info-tarjeta">
+            <span class="etiqueta"><%= mascota.nombre %></span>
+            <h3 class="especie-titulo">Especie: <%= mascota.especie %></h3>
+            <p class="edad-texto">Edad: <%= mascota.edad %> Año</p>
+            <p class="edad-texto">Estado: <%= mascota.estado %></p>
+        </div>
+        <div style="margin-top: 20px">
+            <a  href="/mascotas/<%= mascota.id %>">Ver detalle</a>
+        </div>
+        </article>
+    <% }); %>
+    </div>
+<% } %>
+
+  

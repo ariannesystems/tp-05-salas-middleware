@@ -1,0 +1,63 @@
+<section class="tarjeta-principal">
+    <p class="etiqueta">NUEVO INGRESO</p>
+    <hr>
+    <h1><%= titulo %></h1>
+    <% if (error) { %>
+        <p class="error-msg" role="alert"><%= error %></p>
+    <% } %>
+    <form action="/mascotas" method="post" class="formulario">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" value="<%= valores.nombre ?? '' %>" required>
+        
+        <label for="especie">Categoría</label>
+        <input id="especie" name="especie" value="<%= valores.especie ?? '' %>" required>
+
+        <label for="edad">Edad</label>
+        <input id="edad" name="edad" type="number" min="0" step="1" value="<%= valores.edad ?? '' %>" 
+               class="<%= error && (!valores.edad || Number(valores.edad) <= 0) ? 'campo-error' : '' %>">
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" rows="5" required><%= valores.descripcion ?? '' %></textarea>
+        
+        <label for="estado">Estado</label>
+        <select id="estado" name="estado" required>
+            <option value="">Seleccionar estado</option>
+            <option value="En adopción" <%= valores.estado === 'En adopción' ? 'selected' : '' %>>En adopción</option>
+            <option value="Reservada" <%= valores.estado === 'Reservada' ? 'selected' : '' %>>Reservada</option>
+            <option value="Adoptada" <%= valores.estado === 'Adoptada' ? 'selected' : '' %>>Adoptada</option>
+        </select>
+
+        <label for="imagen">Ruta de imagen</label>
+        <input id="imagen" name="imagen" value="<%= valores.imagen ?? '/img/mascota.svg' %>" 
+                class="<%= error && String(valores.imagen ?? '').trim() !== '/img/mascota.svg' ? 'campo-error' : '' %>"
+    required>
+        <hr>
+        <button type="submit">Guardar mascota</button>
+    </form>
+</section>
+
+<script>
+    const formulario = document.querySelector(".formulario");
+
+    const campos = formulario.querySelectorAll("input, select, textarea");
+
+    campos.forEach(campo => {
+
+        campo.addEventListener("invalid", function () {
+            campo.classList.add("campo-error");
+        });
+
+        campo.addEventListener("input", function () {
+            if (campo.checkValidity()) {
+                campo.classList.remove("campo-error");
+            }
+        });
+
+        campo.addEventListener("change", function () {
+            if (campo.checkValidity()) {
+                campo.classList.remove("campo-error");
+            }
+        });
+
+    });
+</script>
