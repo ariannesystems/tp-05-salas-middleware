@@ -59,6 +59,68 @@ function identificarSolicitud(req, res, next) {
     next();
 }
 
+function medirDuracion(req, res, next) {
+
+    const inicio = process.hrtime.bigint();
+
+    res.on("finish", () => {
+        const fin = process.hrtime.bigint();
+        const milisegundos = Number(fin - inicio) / 1_000_000;
+
+        console.log( ` duración: [${res.locals.solicitudId}] ${req.method} ${req.originalUrl} ` +
+                     `${res.statusCode} ${milisegundos.toFixed(2)} ms`,);
+    });
+
+    next();
+}
+
+function prepararAreaReservasSalasEstudios( req, res, next) {
+
+    res.locals.seccion = "Reservas de salas de estudio";
+    console.log( 'Sección' + res.locals.seccion );
+    next();
+}
+
+function validarReservasSalasEstudios( req, res, next) {
+    
+    const estudiante = String(req.body.estudiante ?? "").trim();
+    const email = String(req.body.email ?? "").trim();
+    const sala = String(req.body.sala ?? "").trim();
+    const fecha = String(req.body.fecha ?? "").trim();
+    const turno = String(req.body.turno ?? "").trim();
+    const personas = Number(req.body.personas);
+    
+    const salasPermitidas = ["Sala Norte", "Sala Sur", "Sala Multimedia"];
+    const turnos = ["Mañana", "Tarde", "Noche"];
+
+    if (!estudiante || 
+        !email || 
+        !salasPermitidas.includes(sala) ||
+        !fecha ||
+        !turnos.includes(turno) ||
+        !Number.isInteger(personas)){
+        
+            return res.status(400).render("productos/nuevo", {
+                titulo: "Nuevo producto",
+                error: "Completá todos los campos con valores válidos.",
+                valores: req.body,
+        });
+    }
+    req.productoValidado = { nombre, categoria, precio, descripcion };
+    next();
+}
+
+function crearReservasSalasEstudios(req, res) {
+
+    const ultimoId = reservas.reduce(
+    
+    (mayorId, reserva) => Math.max(mayorId, reserva.id), 0, );
+    
+    reservas.push({ id: ultimoId + 1, ...req.productoValidado });
+
+    res.redirect("/productos");
+ }
+
 //Funcion principal de inicio
 async function main() {
    
