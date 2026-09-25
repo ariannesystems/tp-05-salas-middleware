@@ -76,7 +76,7 @@ function medirDuracion(req, res, next) {
 }
 
 //MIDDLEWARE: Indica en que seccion se esta procesando la solicitud
-function prepararAreaReservasSalasEstudio( req, res, next) {
+function prepararAreaReservas( req, res, next) {
 
     res.locals.seccion = "Reservas de salas de estudio";
     console.log( 'Sección: ' + res.locals.seccion );
@@ -84,7 +84,7 @@ function prepararAreaReservasSalasEstudio( req, res, next) {
 }
 
 //MIDDLEWARE: Comprueba que los datos de la reservas sean correctos antes de continuar
-function validarReservasSalasEstudio( req, res, next ) {
+function validarReservas( req, res, next ) {
     
     const estudiante = String(req.body.estudiante ?? "").trim();
     const email = String(req.body.email ?? "").trim();
@@ -118,7 +118,7 @@ function validarReservasSalasEstudio( req, res, next ) {
 }
 
 //Función para crear una reserva nueva
-function crearReservasSalasEstudio(req, res) {
+function crearReservas(req, res) {
 
     const ultimoId = reservas.reduce(
     
@@ -159,7 +159,7 @@ async function main() {
 
     //Definimos el enrutador
     const reservasRouter = express.Router();
-    reservasRouter.use(prepararAreaReservasSalasEstudio);
+    reservasRouter.use(prepararAreaReservas);
 
     reservasRouter.get("/", (req, res) => {
 
@@ -186,7 +186,7 @@ async function main() {
         if (!reserva) {
             return res.status(404).render("no-encontrado", {
                 titulo: "Reserva no encontrada",
-                mensaje: "No existe una reserva con ese identificador.",
+                mensaje: "La dirección solicitada no existe.",
             });
         }
         res.render("reservas/detalle", {
@@ -195,7 +195,7 @@ async function main() {
         });
     });
 
-    reservasRouter.post("/", validarReservasSalasEstudio, crearReservasSalasEstudio);
+    reservasRouter.post("/", validarReservas, crearReservas);
     app.use("/reservas", reservasRouter);
 
     app.use((req, res) => {
